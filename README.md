@@ -9,7 +9,7 @@
 
 1. Markdown Previewer - [Link](http://samatki.github.io/fcc_react_projects/RP01 - FCC - Markdown Previewer/index.html)
 
-2. FreeCodeCamp Leaderboard - [Link](http://samatki.github.iofcc_react_projects/RP02 - FCC - FreeCodeCamp LeaderBoard/index.html)
+2. FreeCodeCamp Leaderboard - [Link](http://samatki.github.io/fcc_react_projects/RP02 - FCC - FreeCodeCamp LeaderBoard/index.html)
 
 3. Recipe Box - [Link](http://samatki.github.io/fcc_react_projects/RP03 - FCC - Recipe Box/index.html)
 
