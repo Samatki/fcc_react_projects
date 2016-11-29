@@ -4,7 +4,7 @@
 
 A Pen created at CodePen.io. You can find this one at http://codepen.io/Satki/pen/bBdjGb.
 
- ### User Stories
+### User Stories
  
 - User Story: I can create recipes that have names and ingredients.
 
