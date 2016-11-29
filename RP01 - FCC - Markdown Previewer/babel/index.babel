@@ -1,0 +1,25 @@
+var introText = 'Heading\n=======\n\nSub-heading\n-----------\n \n### Another deeper heading\n \nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a  \nline break\n\nText attributes *italic*, **bold**, \n`monospace`, ~~strikethrough~~ .\n\nShopping list:\n\n  * apples\n  * oranges\n  * pears\n\nNumbered list:\n\n  1. apples\n  2. oranges\n  3. pears\n\nThe rain---not the reign---in\nSpain.\n\n *[Herman Fassett](https://freecodecamp.com/hermanfassett)*'
+
+var Program = React.createClass({
+   getInitialState:function(){
+     return {introText2:introText}
+   },
+  
+  blahblah:function(){
+  this.setState({introText2:$('textArea').val()})
+  },
+    
+  render: function(){return (<div className='row'>
+     <textArea type="text" rows='30' className='col-md-4 col-md-offset-2' onChange={this.blahblah}>{this.state.introText2}</textArea>
+     <ResultArea content={this.state.introText2} />
+     </div>)}
+})
+
+function ResultArea(props){
+    return (<div id='resultContainer' className='col-md-6' dangerouslySetInnerHTML={{ __html: marked(props.content)}}></div>
+)}
+
+ReactDOM.render(<Program />, $('#app')[0]);
+
+
+

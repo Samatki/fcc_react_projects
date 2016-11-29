@@ -1,0 +1,118 @@
+$fonts : Raleway, sans-serif;
+
+*{
+  font-family: $fonts;
+}
+
+.sqBlock{
+  height:10px;
+  min-width:10px;
+  background-color:blue;
+  border-radius:50%;
+  &:hover{
+    background-color:maroon;
+  }
+}
+
+.alive{
+  background-color:red;
+}
+
+table {
+        border-collapse: separate;
+        border-spacing: 2px 2px;
+        table-layout:fixed;
+}
+
+.new{
+  background-color:Firebrick;
+}
+
+#GOLContainer{
+  margin-top:15px;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column; /* works with row or column */
+   flex-direction: column;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+}
+
+#iterCount{
+  max-width: 500px;
+  margin:auto;
+  width:100%;
+  text-align:center;
+  font:{size:25px;
+    
+      }
+}
+input[type='range']{
+  direction:rtl;
+  
+}
+
+#label-left{
+  float:left;
+  margin-top:-3px;
+}
+
+#label-right{
+  float:right;
+  margin-top:-3px;
+}
+
+button{
+  display:block;
+  width:75px;
+  margin-top:15px;
+  margin-left: auto;
+  margin-right:auto;
+  border:none;
+  outline:none;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+label{
+  width:100%;
+  text-align:center;
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+
+a{
+  &:hover{
+    text-decoration:none;
+  }
+}
+
+h1{
+  margin-bottom:5px;
+}
+
+h4{
+  margin-top:0px;
+  margin-bottom: 20px;
+}
+
+input[type='number']{
+  text-align:center;
+  margin:auto;
+  display:block;
+}
+
+#vWarning{
+  width:100%;
+  text-align:center;
+  color:red;
+  margin-top:10px;
+  margin-bottom:5px;
+}
+
+.gButton{
+  //display:inline-block;
+  width:250px;;
+}

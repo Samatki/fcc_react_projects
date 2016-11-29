@@ -1,0 +1,40 @@
+$font1 : 'Raleway', sans-serif;
+$font2 : 'Inconsolata', monospace;
+
+#app{
+  margin:20px auto;
+  }
+
+textArea{
+  resize:vertical;
+  outline:none;
+  overflow-y: scroll;
+  width:100%;
+  font:{
+    family: $font2;
+    size:14px;
+  }
+}
+
+#resultContainer{
+  padding-left:50px;
+  word-wrap: break-word;
+    font:{
+          family: $font1;
+          size:12px;
+          }
+}
+
+
+h1 {
+    font:{
+          family: $font1;
+  } 
+}
+
+#titleContainer{
+margin:auto;
+  text-align:center;
+  padding-top:20px;
+  
+}

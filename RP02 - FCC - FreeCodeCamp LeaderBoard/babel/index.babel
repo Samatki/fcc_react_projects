@@ -1,0 +1,107 @@
+var recentURL = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
+var allTimeURL = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+var FCCRootURL = 'https://www.freecodecamp.com/'
+var rows2;
+
+$(document).ajaxSend(function(){
+        console.log('START');
+            });
+$(document).ajaxStop(function(){
+   console.log('STOP');
+});
+
+
+var Century = React.createClass({ 
+  getInitialState: function(){
+     return {data2:[], reqURL:recentURL};
+  },
+  getData: function(URL){
+    $.ajax({
+      url: URL,
+      success: function(data){
+        this.setState({data2:data});
+        }.bind(this)
+    })
+  },  
+  componentWillMount: function(){
+    this.getData(recentURL);
+  },
+  
+  render: function(){
+    return (
+        <table>
+          <thead>
+            <th>#</th>
+            <th></th>
+            <th>Name</th>
+            <th onClick={()=>{ this.getData(recentURL); this.props.upd() }} >
+            Recent Points</th>
+            <th onClick={()=>{ this.getData(allTimeURL); this.props.upd() }} >
+             All Time Points</th>
+          </thead>
+          <CenturyRows UserData={this.state.data2} />
+        </table>
+    )
+  }  
+});
+
+var CenturyRows = React.createClass({
+  dataSorter:function(){
+    var count = 0;
+   rows2 = this.props.UserData.map(function(rowItem){
+     count++
+     return (
+        <CenturyItem imgurl={rowItem.img} counter={count} name={rowItem.username} recent={rowItem.recent} allTime={rowItem.alltime} />
+     )
+   },this)
+   }, 
+  render: function(){
+    this.dataSorter()
+    return (
+      <tbody>
+        {rows2}
+      </tbody>
+    )
+  }
+});
+
+var CenturyItem = React.createClass({
+  render: function(){
+    var currUserURL = FCCRootURL + this.props.name;
+    return(
+    <tr>
+        <td>{this.props.counter}</td>
+        <td><a href={currUserURL}><img src={this.props.imgurl} /></a></td>        
+        <td><a href={currUserURL}>{this.props.name}</a></td>
+        <td>{this.props.recent}</td>
+        <td>{this.props.allTime}</td>        
+     </tr>
+    )
+  }
+});
+
+var TitleBar = React.createClass({
+  getInitialState: function(){
+    var d = new Date();
+    var s =  d.toUTCString();
+    return {lcDate:s};
+  },
+  
+  newRunner:function(){
+    var d = new Date();
+    var s =  d.toUTCString();
+    this.setState({lcDate:s})
+
+  },
+  
+  render:function(){
+    return (<div id='titleContainer'>
+        <h1>FCC LeaderBoard</h1>
+        <h3>Last Checked: {this.state.lcDate}</h3>
+        <Century upd={this.newRunner}/>
+      </div>)
+  }
+})
+
+ReactDOM.render(<TitleBar />,document.getElementById('app'));
+

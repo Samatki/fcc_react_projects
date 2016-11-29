@@ -1,0 +1,160 @@
+* {
+  font-family: Raleway, sans-serif;
+}
+
+td {
+  height: 10px;
+  width: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  background-color: red;
+}
+
+.wall {
+  background-color: slategrey;
+}
+
+.path {
+  background-color: ivory;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+  table-layout: fixed;
+  margin: auto;
+}
+
+body {
+  background-color: lightgrey;
+}
+
+.mob {
+  background-color: red;
+}
+
+.item {
+  background-color: orange;
+}
+
+.health {
+  background-color: green;
+}
+
+.player {
+  background-color: sienna !important;
+}
+
+.teleporter {
+  background-color: purple;
+}
+
+.boss {
+  background-color: red;
+}
+
+.dark {
+  background-color: lightgrey;
+}
+
+#lightButtonHolder {
+  text-align: center;
+}
+
+.lightButtons {
+  outline: none;
+  width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  height: 20px;
+}
+
+main {
+  height: 1100px;
+  border: thin solid black;
+  display: block;
+}
+
+#gameTop, #gameTop2 {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px auto 20px auto;
+  width: 1000px;
+  background-color: ivory;
+  border-color: black;
+  border-radius: 30px;
+  border-width: medium;
+  border-style: outset;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#lightButtonHolder {
+  text-align: center;
+  margin: 20px auto 20px auto;
+  width: 1000px;
+  background-color: ivory;
+  border-color: black;
+  border-radius: 30px;
+  border-width: medium;
+  border-style: outset;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+span {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  display: none;
+}
+
+#gameOverOverlay {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  top: 50px;
+  width: 500px;
+  height: 250px;
+  background-color: ivory;
+  left: calc(50% - 250px);
+  border-radius: 20px;
+  border: medium black solid;
+}
+
+#NGButton {
+  font-size: 30px;
+  height: 100px;
+  width: 200px;
+  border-radius: 25px;
+  outline: none;
+  background-color: lightblue;
+}
+
+h3 {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
+@media (max-width: 1000px) {
+  h1, div, main {
+    display: none;
+  }
+
+  h2 {
+    display: block;
+    text-align: center;
+  }
+}

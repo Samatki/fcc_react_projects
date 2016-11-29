@@ -1,0 +1,361 @@
+var recRows;
+var ingredients;
+var ingredientsCont;
+
+var RecipesArray = [{
+  title: 'Spaghetti Bolognese',
+  src: 'https://secretsauce.co.uk/shared/images/cms/content/2/200/1626.jpg',
+  recipe: 'mince,onions,mushrooms,tomatoes,garlic,spaghetti'
+}, {
+  title: 'Carbonara',
+  src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Spaghetti_carbonara.jpg/1920px-Spaghetti_carbonara.jpg',
+  recipe: 'cream,egg,pepper,bacon,spaghetti'
+}, {
+  title: 'Bread',
+  src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Korb_mit_Br%C3%B6tchen.JPG/1024px-Korb_mit_Br%C3%B6tchen.JPG',
+  recipe: 'Flour,yeast,salt,olive oil,water'
+}];
+
+if (typeof(Storage) !== "undefined" && localStorage.getItem('dataArray') != null) {
+  RecipesArray = JSON.parse(localStorage.getItem('dataArray'));
+  console.log('Loaded from local Storage')
+  console.log(localStorage.getItem('dataArray'));
+} else {
+  console.log('NO LOCAL STORAGE DATA')
+}
+
+function saveState() {
+  if (typeof(Storage) !== "undefined") {
+    var data = JSON.stringify(RecipesArray);
+    localStorage.setItem('dataArray', data);
+    console.log('SAVED!');
+    console.log(localStorage.getItem('dataArray'));
+  } else {
+    console.log('NO LOCAL STORAGE SUPPORT')
+  }
+}
+
+function testImage(URL) {
+  var result;
+    var tester=new Image();
+  tester.src = URL;
+  tester.onload=function(){result=true};
+    tester.onerror=function(){result=false};
+  console.log(result);
+  return result;
+  
+}
+
+function newRecipe(x, y, z) {
+  this.title = x;
+  this.src = y;
+  this.recipe = z;
+}
+
+////////////// REACT CLASS ////////////
+
+var MainApp = React.createClass({
+  getInitialState: function() {
+    return ({
+      cRep: 0,
+      MODE: 'SELECT'
+    })
+  },
+
+  parseUp: function(num) {
+    console.log('works ' + num);
+    this.setState({
+      cRep: num,
+      MODE: 'SELECT'
+    });
+  },
+
+  editItem: function() {
+    this.setState({
+      MODE: 'EDIT'
+    });
+  },
+  
+    addItem: function() {
+    this.setState({
+      MODE: 'ADD'
+    });
+  },
+
+  deleteItem: function() {
+    RecipesArray.splice(this.state.cRep, 1);
+    saveState();
+    this.parseUp(0);
+  },
+
+  render: function() {
+    return (
+      <div className='row'>
+
+        <div className='col-sm-5 col-xs-12' id='leftSide'>
+        <h1 className='col-xs-10 col-xs-offset-1' style={{'textAlign':'center'}}>Recipes</h1>
+        <br />
+          <Recipes parseUp={this.parseUp} adder={this.addItem} />
+        </div>
+        <div className='col-sm-5 col-sm-offset-2 col-xs-12' id='rightSide'>
+          {(this.state.MODE == 'EDIT') ?
+              <Editor  deleter={this.deleteItem} recItem={this.state.cRep} parseUp={this.parseUp} />
+          : null}
+          {(this.state.MODE == 'SELECT') ?
+              <Recipe recItem={this.state.cRep} editor={this.editItem} />
+          : null}
+          {(this.state.MODE == 'ADD') ?
+              <Add deleter={this.deleteItem} parseUp={this.parseUp} />
+          : null}
+          </div>
+      </div>
+    )
+  }
+})
+
+////////////// REACT CLASS ////////////
+
+var Recipes = React.createClass({
+  parseUp: function(num) {
+    this.props.parseUp(num)
+  },
+
+  makeRecipeList: function() {
+    var recIndex = -1;
+    recRows = RecipesArray.map(function(rowItem) {
+      recIndex++
+      return (
+      <RecipeItem key={recIndex} recIndex={recIndex} parseUp={this.parseUp} title={rowItem.title} image={rowItem.src} recipe={rowItem.recipe} />
+      )
+    }, this)
+  },
+
+  render: function() {
+    this.makeRecipeList();
+    return (
+      <div>
+        {recRows}
+        <div className='row'>
+          <button className='funcButton col-xs-10 col-xs-offset-1' onClick={this.props.adder} >
+            <i className="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    )
+  }
+})
+
+////////////// REACT CLASS ////////////
+
+var RecipeItem = React.createClass({
+  render: function() {
+    return (
+      <div className='row'>
+        <div className='box RecListItem col-xs-10 col-xs-offset-1' onClick={this.props.parseUp.bind(null, this.props.recIndex)} >
+              <p className='col-xs-10 col-xs-offset-1'>
+                {this.props.title}
+              </p>
+          </div>
+      </div>
+    )
+  }
+})
+
+////////////// REACT CLASS ////////////
+
+var Recipe = React.createClass({
+  ingMaker: function() {
+    ingredients = RecipesArray[this.props.recItem].recipe.split(',');
+    ingredientsCont = ingredients.map(function(ingredient) {
+      return (
+                <div className='row'>
+          <div className='col-xs-10 col-xs-offset-1'>
+        <h3 key={'ing'+ingredient} >
+          {ingredient.toLowerCase()}
+        </h3>
+          </div>
+          </div>)
+    }, this)
+  },
+
+  render: function() {
+    console.log(RecipesArray.length);
+    if (RecipesArray.length != 0) {
+      this.ingMaker();
+      return (
+        <div>
+          <div className='row'>
+            <div className='col-xs-10 col-xs-offset-1'>
+          <h1>
+            {RecipesArray[this.props.recItem].title}
+          </h1>
+            </div>
+          </div>
+                  <div className='row'>
+            <div className='col-xs-6 col-xs-offset-3'>
+              <img src={RecipesArray[this.props.recItem].src} />
+            </div>
+          </div>  
+         
+          <div>
+            {ingredientsCont}
+          </div>
+                  <div className='row'>
+          <button className='funcButton col-xs-10 col-xs-offset-1' onClick={this.props.editor.bind(null)} >
+            <i className="fa fa-info-circle" aria-hidden="true"></i>
+            <span> Edit</span>
+          </button>
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    };
+  }
+})
+
+////////////// REACT CLASS ////////////
+
+var Editor = React.createClass({
+
+  updateEntry: function() {
+    if (a!='' && c!=''){  
+    var a = document.getElementsByClassName('TitleInput')[0].value;
+    var b = document.getElementsByClassName('ImageInput')[0].value;
+    var c = document.getElementsByClassName('IngredientsInput')[0].value;
+    var d = new newRecipe(a, b, c);
+
+    RecipesArray.splice([this.props.recItem], 1, d);
+    saveState();
+    console.log(RecipesArray);
+
+    this.props.parseUp([this.props.recItem]);
+    }
+  },
+
+  render: function() {
+    return (
+    <div>
+        <h1 className='col-xs-10 col-xs-offset-1' style={{'textAlign':'center'}}>Edit Entry</h1>
+        <br />
+        <div className='row'>
+          <span className='col-xs-offset-1'>Title:</span><br /> 
+        <input type='text' defaultValue={RecipesArray[this.props.recItem].title} className='TitleInput col-xs-offset-2 col-xs-8' />
+        </div>
+        <div className='row'>
+          <br /> 
+          <span className='col-xs-offset-1'>Image Source:</span><br /> 
+        <input type='text'  defaultValue={RecipesArray[this.props.recItem].src} className='ImageInput col-xs-offset-2 col-xs-8'/>
+        </div>
+        <div className='row'>
+          <br /> 
+         <span className='col-xs-offset-1'>Ingredients (seperated by commas):</span><br />
+        <textArea className='IngredientsInput col-xs-offset-2 col-xs-8' defaultValue={RecipesArray[this.props.recItem].recipe} ></textArea>
+        </div>
+                <div className='row'>
+        <button className='funcButton col-xs-10 col-xs-offset-1' onClick={this.updateEntry}>
+         	<i className="fa fa-check-circle" aria-hidden="true"></i>
+          <span> Save</span>
+        </button> 
+        </div>
+                <div className='row'>
+        <button className='funcButton col-xs-10 col-xs-offset-1' id='deleteButton' onClick={this.props.deleter.bind(null)} >      
+          <i className="fa fa-times-circle" aria-hidden="true" ></i>
+          <span> Delete</span>
+        </button> 
+        </div>
+     </div>    
+      
+ 
+
+    )
+  }
+})
+
+/*
+
+ <div>
+               <div className='row'>
+    Title:
+    <input type='text'  defaultValue={RecipesArray[this.props.recItem].title} className='TitleInput' />
+        </div>
+               <div className='row'>
+                 Image Source:
+    <input type='text'  defaultValue={RecipesArray[this.props.recItem].src} className='ImageInput'/>
+        </div>
+               <div className='row'>
+                 Ingredients (seperated by commas):
+    <textarea  defaultValue={RecipesArray[this.props.recItem].recipe} className='IngredientsInput'></textarea>
+        </div>
+            <div className='row'>
+        <button className='funcButton col-xs-10 col-xs-offset-1' onClick={this.updateEntry}>
+     	<i className="fa fa-check-circle" aria-hidden="true"></i>
+      <span> Save</span>
+    </button> 
+        </div>
+                <div className='row'>
+    <button className='funcButton col-xs-10 col-xs-offset-1' id='deleteButton' onClick={this.props.deleter.bind(null)}>
+      <i className="fa fa-times-circle" aria-hidden="true"></i>
+      <span> Delete </span>
+    </button>
+        </div>
+  </div>
+
+*/
+
+////////////// REACT CLASS ////////////
+
+var Add = React.createClass({
+    updateEntry: function() {
+  
+    var a = document.getElementsByClassName('TitleInput')[0].value;
+    var b = document.getElementsByClassName('ImageInput')[0].value;
+    var c = document.getElementsByClassName('IngredientsInput')[0].value;
+    if (a!='' && c!=''){  
+    var d = new newRecipe(a, b, c);
+
+    RecipesArray.push(d);
+    saveState();
+    console.log(RecipesArray);
+
+    this.props.parseUp(RecipesArray.length-1);
+    }
+  },
+  
+  render: function(){
+    return (
+     <div>
+        <h1 className='col-xs-10 col-xs-offset-1' style={{'textAlign':'center'}}>Add Entry</h1>
+        <br />
+        <div className='row'>
+          <span className='col-xs-offset-1'>Title:</span><br /> 
+        <input type='text' className='TitleInput col-xs-offset-2 col-xs-8' />
+        </div>
+        <div className='row'>
+          <br /> 
+          <span className='col-xs-offset-1'>Image Source:</span><br /> 
+        <input type='text' className='ImageInput col-xs-offset-2 col-xs-8'/>
+        </div>
+        <div className='row'>
+          <br /> 
+         <span className='col-xs-offset-1'>Ingredients (seperated by commas):</span><br />
+        <textArea className='IngredientsInput col-xs-offset-2 col-xs-8'></textArea>
+        </div>
+                <div className='row'>
+        <button className='funcButton col-xs-10 col-xs-offset-1' onClick={this.updateEntry}>
+         	<i className="fa fa-check-circle" aria-hidden="true"></i>
+          <span> Save</span>
+        </button> 
+        </div>
+                <div className='row'>
+        <button className='funcButton col-xs-10 col-xs-offset-1' id='deleteButton' onClick={this.props.parseUp.bind(null,0)} >      
+          <i className="fa fa-times-circle" aria-hidden="true" ></i>
+          <span> Delete</span>
+        </button> 
+        </div>
+     </div>    
+    )
+  }
+})
+
+ReactDOM.render(<MainApp />, document.getElementById('app'))

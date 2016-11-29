@@ -1,0 +1,102 @@
+* {
+  font-family: Raleway, sans-serif;
+}
+
+table {
+  margin: -15px auto;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+thead th {
+  padding: 5px 20px 5px 20px;
+  background-color: slategrey;
+  color: white;
+}
+thead th:first-child {
+  padding: 5px 0px 5px 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+}
+thead th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
+thead th:nth-child(3) {
+  text-align: left;
+  padding: 5px 20px 5px 5px;
+}
+thead th:nth-child(4) {
+  cursor: pointer;
+}
+thead th:nth-child(2) {
+  padding: 5px 10px 5px 10px;
+}
+
+td {
+  padding: 5px 20px 5px 20px;
+  text-align: center;
+}
+td:first-child {
+  padding: 5px 0px 5px 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+td:nth-child(3) {
+  min-width: 130px;
+  max-width: 130px;
+  text-align: left;
+  padding: 5px 20px 5px 5px;
+}
+td:nth-child(2) {
+  padding: 5px 10px 5px 10px;
+}
+td img {
+  height: 20px;
+  width: 20px;
+  border-radius: 30px;
+}
+td a {
+  color: inherit;
+}
+td a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+td a:visited {
+  color: inherit;
+}
+
+tr {
+  transition: background-color 0.5s, color 0.5s;
+}
+tr:nth-child(even) {
+  background-color: #FE9;
+  color: #99aaff;
+}
+tr:nth-child(even):hover {
+  background-color: #99ffcc;
+  color: #ff99cc;
+}
+tr:nth-child(odd) {
+  color: #FE9;
+  background-color: #99aaff;
+}
+tr:nth-child(odd):hover {
+  background-color: #ff99cc;
+  color: #99ffcc;
+}
+
+body {
+  background-color: Ivory;
+}
+
+div {
+  text-align: center;
+}

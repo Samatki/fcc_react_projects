@@ -1,0 +1,68 @@
+* {
+  font-family: Raleway, sans-serif;
+}
+
+#app {
+  background-color: transparent;
+}
+
+#leftSide, #rightSide {
+  padding-top: 20px;
+}
+
+.RecListItem {
+  border-bottom: black solid 3px;
+  cursor: pointer;
+  padding: 15px 0px 2px 0px;
+  margin-top: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.RecListItem:hover {
+  font-weight: bold;
+}
+
+.funcButton {
+  background-color: none;
+  outline: none;
+  border-bottom: black solid 3px;
+  cursor: pointer;
+  padding: 10px 0px 10px 0px;
+  margin-top: 15px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: LimeGreen;
+  font-size: 20px;
+}
+.funcButton:hover {
+  color: darkgreen;
+}
+
+@keyframes barMover {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+p {
+  color: slateGrey;
+  text-align: center;
+}
+
+#deleteButton {
+  color: red;
+}
+#deleteButton:hover {
+  color: darkred;
+}
+
+textarea {
+  resize: vertical;
+}
+
+img {
+  border-radius: 50%;
+  width: 100%;
+}
