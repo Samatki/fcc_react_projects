@@ -5,7 +5,7 @@
 
 - All projects initially created on codepen.io
 
-### Projects
+## Projects
 
 1. Tribute Page (Static) - [Link](http://samatki.github.io/fcc_front_end_projects/FE01 - FCC - Tribute Page/index.html)
 
