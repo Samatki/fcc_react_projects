@@ -7,7 +7,12 @@
 
 ## Projects
 
-1. Tribute Page (Static) - [Link](http://samatki.github.io/fcc_front_end_projects/FE01 - FCC - Tribute Page/index.html)
+1. Markdown Previewer - [Link](http://samatki.github.io/fcc_react_projects/RP01 - FCC - Markdown Previewer/index.html)
 
-2. Personal Portfolio Webpage (Static, no Javascript) - [Link](http://samatki.github.io/fcc_front_end_projects/FE02 - FCC - Personal Portfolio/index.html)
+2. FreeCodeCamp Leaderboard - [Link](http://samatki.github.iofcc_react_projects/RP02 - FCC - FreeCodeCamp LeaderBoard/index.html)
 
+3. Recipe Box - [Link](http://samatki.github.io/fcc_react_projects/RP03 - FCC - Recipe Box/index.html)
+
+4. Conway's Game of Life - [Link](http://samatki.github.io/fcc_react_projects/RP04 - FCC - Conway's Game of Life/index.htmll)
+
+5. Roguelike Dungeon Crawler - [Link](http://samatki.github.io/fcc_react_projects/RP05 - FCC - Roguelike Dungeon Crawler/index.html) 
