@@ -67,7 +67,7 @@ var itemArray = [];
 var itemsArray = [{
   name: 'Sword',
   dmg: 0.25,
-  message: 'Slicey Dicey'
+  message: '...'
 }, {
   name: 'Banana',
   dmg: -0.25,
@@ -75,31 +75,31 @@ var itemsArray = [{
 }, {
   name: 'Chainsaw',
   dmg: 0.5,
-  message: 'Wish it was a BFG'
+  message: '...'
 }, {
   name: 'Brick',
   dmg: 0.15,
-  message: 'I LOVE MY BRICK'
+  message: '...'
 }, {
   name: 'Cheesgrater',
   dmg: 0.05,
-  message: 'Now to find some cheese'
+  message: '...'
 }, {
   name: 'Pen',
   dmg: 0.25,
-  message: 'Would have preferred a sword'
+  message: '...'
 }, {
   name: 'Crowbar',
   dmg: 0.35,
-  message: 'Not the third version'
+  message: '...'
 }, {
   name: 'Boxing Gloves',
   dmg: 0.1,
-  message: 'Time for a knockout'
+  message: '...'
 }, {
   name: 'Spiders',
   dmg: 0.75,
-  message: 'Spiders, thousands of them!'
+  message: '...'
 }];
 
 // REACT OBJECT (MAP CREATION AND ENTITY POSITIONING) //
